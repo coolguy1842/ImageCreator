@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tauri App</title>
+        <script type="module" src="/main.js" defer></script>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">    
+        
+        <link rel="stylesheet" href="styles.css"/>
+        <link rel="stylesheet" href="css/main.css"/>
+    </head>
+    <body class="d-flex justify-content-center">
+        <div id="image-main-container" class="d-flex justify-content-start flex-column align-items-center w-100 h-100 pt-5">
+            <button id="image-selector-button">Image/GIF</button>
+            <div style="display: none !important;" id="options-container" class="d-flex flex-column pb-4 align-items-center">
+                <div class="d-flex flex-column justify-items-center align-items-center w-100 mt-4">
+                    <div class="d-flex flex-row">
+                        Downscale: <input class="ml-5" type="checkbox" id="downscale-toggle" title="Downscale"/>
+                    </div>
+                    <div class="d-flex flex-row pt-2" id="downscale-container" style="display: none !important;">
+                        <input type="text" id="downscale-width" title="Downscale Width" placeholder="New Width"/>
+                        <input type="text" id="downscale-height" title="Downscale Height" placeholder="New Height"/>
+                    </div>
+                </div>
+                <div class="d-flex flex-column justify-items-center align-items-center w-100 mt-4">
+                    <div class="d-flex flex-row">
+                        Simplify: <input class="ml-5" type="checkbox" id="simplify-toggle" title="Simplify"/>
+                    </div>
+                    <div class="d-flex flex-row pt-2" id="simplify-container" style="display: none !important;">
+                        <input type="text" id="simplify-colors" title="Simplify Colors" placeholder="New Max Number of Colors"/>
+                    </div>
+                </div>
+                <input class="mt-4" style="max-width: 250px;" id="minecraft-scale" title="Minecraft Scale" placeholder="Minecraft Scale" value="1"/>
+                <input class="mt-4" style="max-width: 250px;" id="minecraft-quality" title="Entity Count (4-6 Recommended)" placeholder="Entity Count (4-6 Recommended)" value="4"/>
+                <button class="mt-4" id="update-image-button">Update Image</button>
+                <button class="mt-4" id="create-datapack-button">Create Datapack</button>
+            </div>
+
+            <img id="image-selector-display"/>
+        </div>
+        
+        <h1 class="p-3 warning-text position-absolute text-center" id="generating-datapack-text" style="display: none; top: 50%;">Generating Datapack... Please Wait</h1>
+        <h1 class="p-3 warning-text position-absolute text-center" id="loading-image-text" style="display: none; top: 50%;">Loading Image... Please Wait</h1>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    </body>
+</html>

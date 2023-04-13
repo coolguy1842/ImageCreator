@@ -1,0 +1,29 @@
+[package]
+name = "minecraft_image_creator"
+version = "1.0.0"
+description = "Import Images and GIFs to Minecraft in a Datapack"
+authors = ["coolguy1842"]
+license = ""
+repository = ""
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.2", features = [] }
+
+[dependencies]
+tauri = { version = "1.2", features = ["dialog-open", "dialog-save"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tauri-api = "0.7.6"
+image = "0.24.6"
+imageproc = "0.23.0"
+base64 = "0.21.0"
+exoquant = "0.2.0"
+regex = "1.7.3"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
