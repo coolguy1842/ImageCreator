@@ -90,7 +90,9 @@ pub fn create_gif(options: ChangeImageOptions) -> Vec<String> {
 
         let out: String;
 
-        if options.downscale.enabled {
+        if options.downscale.enabled && 
+            options.downscale.width > 0 && options.downscale.height > 0 && 
+            options.downscale.width < buf.width() && options.downscale.height < buf.height() {
             img = resize(buf, options.downscale.width, options.downscale.height, image::imageops::FilterType::CatmullRom);
         }
         else {

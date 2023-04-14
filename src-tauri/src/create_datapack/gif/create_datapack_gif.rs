@@ -5,7 +5,7 @@ use crate::util::ChangeImageOptions;
 use super::{create_gif, format_template_gif_frame, format_template_gif_step};
 
 pub fn create_gif_datapack(options: ChangeImageOptions) {
-    let filename = Path::new(&options.path).file_name().and_then(OsStr::to_str).unwrap().to_lowercase().split_once(".").unwrap().0.to_owned();
+    let filename = Path::new(&options.path).file_name().and_then(OsStr::to_str).unwrap().to_lowercase().split_once(".").unwrap().0.to_owned().replace(" ", "_");
 
     fs::create_dir_all(format!("{}/ImageDisplay/data/imagedata/functions/{}_frames", options.datapack_path, filename)).expect("Failed to create directories");
 

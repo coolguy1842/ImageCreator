@@ -12,7 +12,7 @@ pub fn format_template_gif_step(path: &str) -> String {
     let file_full_name = Path::new(&path).file_name().and_then(OsStr::to_str).unwrap().to_lowercase();
     let file_full_name_split: Vec<&str> = file_full_name.split(".").collect();
 
-    let filename = file_full_name_split[0].to_owned();
+    let filename = file_full_name_split[0].to_owned().replace(" ", "_");
 
     
     let file_in = File::open(path).unwrap();

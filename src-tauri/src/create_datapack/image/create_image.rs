@@ -78,7 +78,9 @@ fn create_image_regular(img: DynamicImage) -> String {
 pub fn create_image(options: ChangeImageOptions) -> String {
     let mut img = load_image_or_panic(options.path);
 
-    if options.downscale.enabled {
+    if options.downscale.enabled && 
+        options.downscale.width > 0 && options.downscale.height > 0 && 
+        options.downscale.width < img.width() && options.downscale.height < img.height() {
         img = img.resize(options.downscale.width, options.downscale.height, FilterType::CatmullRom);
     }
 

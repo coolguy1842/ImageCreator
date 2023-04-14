@@ -5,7 +5,7 @@ use crate::util::ChangeImageOptions;
 use super::{create_image, format_template_image};
 
 pub fn create_image_datapack(options: ChangeImageOptions) {
-    let filename = Path::new(&options.path).file_name().and_then(OsStr::to_str).unwrap().to_lowercase().split_once(".").unwrap().0.to_owned();
+    let filename = Path::new(&options.path).file_name().and_then(OsStr::to_str).unwrap().to_lowercase().split_once(".").unwrap().0.to_owned().replace(" ", "_");
 
     let res = &create_image(options.clone());
     let mut out = String::new();
