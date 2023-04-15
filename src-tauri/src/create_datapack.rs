@@ -2,7 +2,7 @@ mod gif;
 mod format_value;
 mod image;
 
-use std::{path::Path, ffi::OsStr, fs};
+use std::{fs};
 
 use crate::util::ChangeImageOptions;
 
@@ -12,11 +12,11 @@ const PACK_FORMAT: i8 = 12;
 
 #[tauri::command]
 pub fn create_datapack(options: ChangeImageOptions) -> bool {
-    let file_full_name = Path::new(&options.path).file_name().and_then(OsStr::to_str).unwrap().to_lowercase();
-    let file_full_name_split: Vec<&str> = file_full_name.split(".").collect();
+    let path_lower = options.path.to_lowercase();
+    let path_split: Vec<&str> = path_lower.split(".").collect();
 
-    let filename = file_full_name_split[0].to_owned().replace(" ", "_");
-    let extension = file_full_name_split[1].to_owned();
+    let filename = path_split[0].to_owned().replace(" ", "_");
+    let extension = path_split[1].to_owned();
 
     fs::create_dir_all(format!("{}/ImageDisplay/data/imagedata/functions/{}", options.datapack_path, filename)).expect("Failed to create directories");
 

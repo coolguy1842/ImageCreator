@@ -7,7 +7,7 @@ use std::path::Path;
 mod preview;
 mod create_datapack;
 
-use preview::modify_preview_image;
+use preview::{modify_preview_image};
 
 use regex::Regex;
 use util::{image_to_base64, ImageData, ChangeImageOptions};

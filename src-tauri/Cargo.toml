@@ -1,6 +1,6 @@
 [package]
 name = "minecraft_image_creator"
-version = "1.0.0"
+version = "1.0.1"
 description = "Import Images and GIFs to Minecraft in a Datapack"
 authors = ["coolguy1842"]
 license = ""

@@ -2,7 +2,7 @@ const { invoke } = window.__TAURI__.tauri;
 const { dialog } = window.__TAURI__;
 
 const options = {
-    path: "",
+    path: null,
     datapack_path: "",
     simplify: {
         enabled: false,
@@ -73,7 +73,7 @@ async function load_image() {
 }
 
 async function change_image() {
-    const selected = await dialog.open({
+    options.path = await dialog.open({
         multiple: false,
         directory: false,
         filters: [{
@@ -82,7 +82,13 @@ async function change_image() {
         }]
     });
 
-    options.path = selected;
+    if(options.path == null) {
+        ImageDisplayEl.attr("src", "");
+        OptionsContainerEl.attr("style", "display: none !important");
+        
+        return;
+    }
+    
     load_image();
 }
 
@@ -119,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if(e.target.value.match(/[^0-9]/)) {
             e.preventDefault();
 
-            e.target.value = `${options.downscale.width > 0 ? options.downscale.width : ""}` ?? "";
+            e.target.value = `${options.downscale.width > 0 ? options.downscale.width : ""}`;
             return;
         }
 
@@ -134,7 +140,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if(e.target.value.match(/[^0-9]/)) {
             e.preventDefault();
 
-            e.target.value = `${options.downscale.height > 0 ? options.downscale.height : ""}` ?? "";
+            e.target.value = `${options.downscale.height > 0 ? options.downscale.height : ""}`;
             return;
         }
 
@@ -160,7 +166,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if(e.target.value.match(/[^0-9]/)) {
             e.preventDefault();
 
-            e.target.value = `${options.simplify.colors > 0 ? options.simplify.colors : ""}` ?? "";
+            e.target.value = `${options.simplify.colors > 0 ? options.simplify.colors : 64}`;
             return;
         }
 
@@ -178,7 +184,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if(isNaN(Number(e.target.value))) {
             e.preventDefault();
 
-            e.target.value = `${options.scale > 0 ? options.scale : 1}` ?? "";
+            e.target.value = `${options.scale > 0 ? options.scale : 1}`;
             return;
         }
 
@@ -199,7 +205,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if(e.target.value.match(/[^0-9]/)) {
             e.preventDefault();
 
-            e.target.value = `${options.quality > 0 ? options.quality : 4}` ?? "";
+            e.target.value = `${options.quality > 0 ? options.quality : 4}`;
             return;
         }
 
@@ -216,13 +222,16 @@ window.addEventListener("DOMContentLoaded", () => {
     CreateDatapackEl = $("#create-datapack-button");
 
     CreateDatapackEl.on("click", async e => {
-        const selected = await dialog.open({
+        options.datapack_path = await dialog.open({
             multiple: false,
             directory: true,
         });
-    
-        options.datapack_path = selected;
 
+        if(options.datapack_path == null) {
+            options.datapack_path = "";
+            return;
+        }
+        
         GeneratingDatapackTextEl.css("display", "inherit");
         ImageMainContainerEl.css("pointerEvents", "none");
         
