@@ -1,7 +1,7 @@
 const { invoke } = window.__TAURI__.tauri;
 const { dialog } = window.__TAURI__;
 
-const options = {
+var options = {
     path: null,
     datapack_path: "",
     simplify: {
